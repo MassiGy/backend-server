@@ -35,13 +35,17 @@
         return res.status(404).send({ msg: 'The post that you are trying to update does not exist.' });
     }
 
-    // check if the owner is the active user.
-
+    console.group()
+    console.log(foundPost);
+    console.log("//");
+    console.log(foundPost.likedBy instanceof Array);
+    console.groupEnd();
    
     // push the user id to the post likers array.
 
     // foundPost.likedBy.push(req.user.id)
-    foundPost.likedBy.push(1);
+
+    // foundPost.likedBy.push(1);
 
 
     // inform the user with the process status.
