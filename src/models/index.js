@@ -75,7 +75,29 @@ global.User.belongsToMany(global.User, {
 
 
 
-// TODO:  Relationship for post system.
+// Relationships for the posts crud  system.
+
+global.User.hasMany(global.Post,  {
+	through: 'CreatedPosts',
+});
+
+global.Post.belongsTo(global.User, {
+	through: 'Author',
+});
+
+
+// Relationships for the posts liking system.
+
+global.User.belongsToMany(global.Post, {
+	through: "Likers",
+});
+
+global.User.hasMany(global.Post, {
+	through: "LikedPosts",
+});
+
+
+
 
 
 
