@@ -15,7 +15,7 @@ const { sign } = require('jsonwebtoken');
 
 module.exports.login = async (req, res) => {
 
-	if ((!req.body.email && !req.body.username) || !req.body.password) {
+	if ((!req.body.email || !req.body.username) || !req.body.password) {
 		return res.status(400).send({ msg: 'Not All Parameters Given.' });
 	}
 
