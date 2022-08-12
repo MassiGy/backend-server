@@ -20,7 +20,7 @@ module.exports.getAllPosts = async (req, res) => {
     // fetch all the posts.
 
     const foundPosts = await Post.findAll({
-        attributes: ['title', 'content'],
+        // attributes: ['title', 'content'],
     })
 
     if (!foundPosts || !foundPosts.length ) {

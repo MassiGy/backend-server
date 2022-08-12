@@ -3,5 +3,6 @@ module.exports = (sequelize, DataTypes) => {
 		title: DataTypes.STRING,
 		content: DataTypes.TEXT,
 		ownerId: DataTypes.INTEGER,
+		likedBy: [DataTypes.INTEGER], // stores the users ids that likes the post instance, so likesCount = length
 	});
 };
