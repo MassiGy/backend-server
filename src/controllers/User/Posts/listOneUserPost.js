@@ -23,6 +23,7 @@ module.exports.listOneUserPost = async (req, res) => {
     const foundPost = await Post.findOne({
         where: {
             id: req.params.postId,
+            ownerId: req.params.id,
         },
         attributes: ['title', 'content', 'ownerId'],
     })
@@ -30,13 +31,6 @@ module.exports.listOneUserPost = async (req, res) => {
     if (!foundPost) {
         return res.status(404).send('Post ressource not found.');
     }
-
-    // check if the given user is the owner. 
-
-    if (req.params.id != foundPost.ownerId) {
-        return res.status(403).send('The requested post does not belong to the selected user.');
-    }
-
 
     // send back to the user the fetched data.
 
