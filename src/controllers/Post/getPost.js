@@ -15,6 +15,7 @@
 
 
 
+
 module.exports.getPost = async (req, res) => {
 
     // check if all the parameters are valid.
@@ -31,6 +32,7 @@ module.exports.getPost = async (req, res) => {
             id: req.params.postId,
         },
         attributes: ['title', 'content'],
+        include: global.User,
     })
 
     if (!foundPost) {

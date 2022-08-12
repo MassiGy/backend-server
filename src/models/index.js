@@ -37,7 +37,7 @@ const Post = require('./Post');
 global.Article = Article(sequelize, DataTypes);
 global.User = User(sequelize, DataTypes);
 global.Event = Event(sequelize, DataTypes);
-global.Post = Post(sequelize,DataTypes);
+global.Post = Post(sequelize, DataTypes);
 
 // Setup Relationships
 
@@ -77,24 +77,20 @@ global.User.belongsToMany(global.User, {
 
 // Relationships for the posts crud  system.
 
-global.User.hasMany(global.Post,  {
-	through: 'CreatedPosts',
-});
-
-global.Post.belongsTo(global.User, {
-	through: 'Author',
-});
+global.User.hasMany(global.Post);
+global.Post.belongsTo(global.User);
 
 
-// Relationships for the posts liking system.
 
-global.User.belongsToMany(global.Post, {
-	through: "Likers",
-});
+// // Relationships for the posts liking system.
 
-global.User.hasMany(global.Post, {
-	through: "LikedPosts",
-});
+// global.User.belongsToMany(global.Post, {
+// 	through: "Likers",
+// });
+
+// global.User.hasMany(global.Post, {
+// 	through: "LikedPosts",
+// });
 
 
 
