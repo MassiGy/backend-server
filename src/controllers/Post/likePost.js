@@ -15,37 +15,37 @@
 
 
 
- module.exports.likePost = async (req, res) => {
+
+module.exports.likePost = async (req, res) => {
 
     if (!req.params.postId) {
         return res.status(400).send('invalid post id.');
     }
 
-    // find the original post.
+    // find the post to like and the current user.
 
-    const foundPost = await Post.findOne({
-        where: {
-            id: req.params.postId,
-        }
-    });
+    const [postToLike, currentUser] = await Promise.all([
+
+        Post.findOne({
+            where: {
+                id: req.params.postId,
+            }
+        }),
+        User.findOne({
+            where: {
+                id: req.user.id,
+            }
+        })
+    ])
 
     // check that it exists.
 
-    if (!foundPost) {
+    if (!postToLike) {
         return res.status(404).send({ msg: 'The post that you are trying to update does not exist.' });
     }
 
-    console.group()
-    console.log(foundPost);
-    console.log("//");
-    console.log(foundPost.likedBy instanceof Array);
-    console.groupEnd();
-   
-    // push the user id to the post likers array.
-
-    // foundPost.likedBy.push(req.user.id)
-
-    // foundPost.likedBy.push(1);
+    // set the association
+    currentUser.addLikedPost(postToLike);
 
 
     // inform the user with the process status.

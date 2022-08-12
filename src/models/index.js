@@ -51,14 +51,14 @@ global.Event.belongsToMany(global.User, {
 
 // Relationship for Follower System
 global.User.belongsToMany(global.User, {
-	through: 'Followers',
 	as: 'Followee',
 	foreignKey: 'followeeId',
+	through: 'Followers',
 });
 global.User.belongsToMany(global.User, {
-	through: 'Followers',
 	as: 'Follower',
 	foreignKey: 'followerId',
+	through: 'Followers',
 });
 
 // Relationship for Block System
@@ -85,14 +85,14 @@ global.Post.belongsTo(global.User);
 // Relationships for the posts liking system.
 
 global.User.belongsToMany(global.Post, {
-	as : "Liker",
-	foreignKey : "LikerId",
+	as: "LikedPost",
+	foreignKey:"LikedPostId",
 	through: "Users_LikedPosts", // the name of the join table
 });
 
 global.Post.belongsToMany(global.User, {
-	as: "LikedPost",
-	foreignKey:"LikedPostId",
+	as : "Liker",
+	foreignKey : "LikerId",
 	through: "Users_LikedPosts", // the name of the join table
 });
 

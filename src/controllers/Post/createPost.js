@@ -15,6 +15,7 @@
 
 
 
+
 module.exports.createPost = async (req, res) => {
 
     // check if all the parameters are valid.
@@ -25,15 +26,12 @@ module.exports.createPost = async (req, res) => {
         return res.status(400).send('post content or post title cannot be blank.');
     }
 
-
     // get the current user ;
-
-    const user = User.findOne({
+    const currentUser = User.findOne({
         where: {
             id: req.user.id,
         }
     })
-
 
     // create a new post record
 
@@ -45,8 +43,8 @@ module.exports.createPost = async (req, res) => {
 
 
     // set the association.
-    
-    user.addPost(newPost);
+
+    currentUser.addPost(newPost);
 
 
 
