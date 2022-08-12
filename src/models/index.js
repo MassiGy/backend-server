@@ -82,15 +82,19 @@ global.Post.belongsTo(global.User);
 
 
 
-// // Relationships for the posts liking system.
+// Relationships for the posts liking system.
 
-// global.User.belongsToMany(global.Post, {
-// 	through: "Likers",
-// });
+global.User.belongsToMany(global.Post, {
+	as : "Liker",
+	foreignKey : "LikerId",
+	through: "Users_LikedPosts", // the name of the join table
+});
 
-// global.User.hasMany(global.Post, {
-// 	through: "LikedPosts",
-// });
+global.Post.belongsToMany(global.User, {
+	as: "LikedPost",
+	foreignKey:"LikedPostId",
+	through: "Users_LikedPosts", // the name of the join table
+});
 
 
 
